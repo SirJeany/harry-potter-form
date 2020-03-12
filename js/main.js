@@ -55,11 +55,10 @@ let characters = [
 ];
 
 // Lookup function:
-document.getElementById("searchCharacterBtn").addEventListener("click", function ( name, prop) {
-    var foundProp = false;
+document.getElementById("searchCharacterBtn").addEventListener("click", function (name, prop) {
     var lookUpchar = document.getElementById("lookupChar").value;
     var lookUpLikes = document.getElementById("lookupLikes").value;
-    document.getElementById("showLookupResult").innerHTML = lookUpLikes; // test ouput
+    document.getElementById("showLookupResult").innerHTML = "lookUpLikes"; // test ouput
 
     var foundChar = findChar(lookUpchar); // gets index of character in list
     
@@ -106,6 +105,7 @@ function findProp(name, prop) {
 }
 
 document.getElementById("addCharacter").addEventListener("click", function() {
+    event.preventDefault();
     newCharacter = {
         "firstName": document.forms["harryForm"]["firstName"].value,
         "lastName": document.forms["harryForm"]["lastName"].value,
