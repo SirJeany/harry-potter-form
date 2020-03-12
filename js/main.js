@@ -97,10 +97,12 @@ function findProp(name, prop) {
     var charIndex = findChar(name);
     if(charIndex >= 0){
         for (let i = 0; i < characters[charIndex]["likes"].length; i++) {
-            alert(characters[charIndex]["likes"][i]);
-            
+            if(characters[charIndex]["likes"][i] == prop){
+                return i;
+            }            
         }
     }
+    return -1;
 }
 
 document.getElementById("addCharacter").addEventListener("click", function() {
