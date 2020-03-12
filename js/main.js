@@ -8,14 +8,14 @@
 
 'use strict';
 
-let likes = ["Alex", "Hogwarts", "Magic", "Hagrid", "Voldemort", "Moaning Myrtle", "Dementors"];
+let likes = ["Hogwarts", "Magic", "Hagrid", "Voldemort", "Moaning Myrtle", "Dementors"];
 
 // Populate the likes dropdown:
 for (let i = 0; i < likes.length; i++) {
     let option = document.createElement('option');
     let optionText = document.createTextNode(likes[i]);
     option.appendChild(optionText);
-    document.getElementById("likeSelect").appendChild(option);
+    document.getElementById("lookupLikes").appendChild(option);
 }
 
 let newCharacter = {
@@ -56,20 +56,52 @@ let characters = [
 
 // Lookup function:
 document.getElementById("searchCharacterBtn").addEventListener("click", function ( name, prop) {
-    var found = false;
-    for (let i = 0; i < characters.length; i++) {
-        if(characters[i].firstName == "Lord"){
-            found = true;
+    var foundProp = false;
+    var lookUpchar = document.getElementById("lookupChar").value;
+    var lookUpLikes = document.getElementById("lookupLikes").value;
+    document.getElementById("showLookupResult").innerHTML = lookUpLikes; // test ouput
+
+    var foundChar = findChar(lookUpchar); // gets index of character in list
+    
+    if(foundChar >= 0){ //Check if the character was found..
+        alert(lookUpchar + " Found");
+        if(findProp(lookUpchar, lookUpLikes) >= 0){
+            alert("Yes, it's true that " + lookUpchar + " likes " + lookUpLikes + "!");
+
+        }
+        else{
+            alert("How dare you!!! " + lookUpchar + " would never like " + lookUpLikes + "!!!");
         }
     }
-    if(found){
-        alert("Voldemort Found");
-    }
     else{
-        alert("Not found");
+        alert("This character is not in the array...");
     }
 });
 
+// Function that finds a character.
+// Returns the index of the character if found.
+// Else returns -1
+function findChar(name) {
+    for (let i = 0; i < characters.length; i++) {
+        if(characters[i].firstName == name){
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Function to find a property. 
+// If the property is there, then return true, else return false.
+// first find the character by name, then 
+function findProp(name, prop) {
+    var charIndex = findChar(name);
+    if(charIndex >= 0){
+        for (let i = 0; i < characters[charIndex]["likes"].length; i++) {
+            alert(characters[charIndex]["likes"][i]);
+            
+        }
+    }
+}
 
 document.getElementById("addCharacter").addEventListener("click", function() {
     newCharacter = {

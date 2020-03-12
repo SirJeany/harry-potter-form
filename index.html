@@ -17,13 +17,17 @@
         <section class="container">
             <form class="form-inline my-2 my-lg-0">
                 <label for="search">Look up character:</label>
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input id="lookupChar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <label for="search">Select like:</label>
-                <select id="likeSelect" class="form-control">
+                <select id="lookupLikes" class="form-control">
                     
                 </select>
                 <button id="searchCharacterBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
               </form>
+
+              <div id="showLookupResult">
+                  <!-- Put result of lookup here using .innerHTML -->
+              </div>
         </section>
 
         <!-- Add character: -->
