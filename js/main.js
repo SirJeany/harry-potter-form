@@ -55,12 +55,15 @@ let characters = [
 ];
 
 // Lookup function:
-document.getElementById("searchCharacterBtn").addEventListener("click", function (name, prop) {
+const searchCharBtn = document.getElementById("searchCharacterBtn");
+const lookupResult = document.getElementById("lookupResult");
+searchCharBtn.addEventListener("click", function () {
     var lookUpchar = document.getElementById("lookupChar").value;
     var lookUpLikes = document.getElementById("lookupLikes").value;
-    document.getElementById("showLookupResult").innerHTML = "lookUpLikes"; // test ouput
 
     var foundChar = findChar(lookUpchar); // gets index of character in list
+
+    lookupResult.textContent = foundChar + " has been found."; // test ouput
     
     if(foundChar >= 0){ //Check if the character was found..
         alert(lookUpchar + " Found");
